@@ -7,6 +7,9 @@ class PlayerList:
         self.tail = None
         self._count = 0
 
+    def __len__(self) -> int:
+        return self._count
+
     def push(self, value: Player):
         if self.head == None and self.tail == None:
             item = PlayerNode(value)

@@ -9,14 +9,14 @@ from player import *
 class TestPlayerClass(unittest.TestCase):
 
     def test_uid(self):
-        a = Player(1, "Test")
+        player1 = Player(1, "Test")
 
-        self.assertEqual(a.uid, 1)
+        self.assertEqual(player1.uid, 1)
 
     def test_name(self): 
-        a = Player(1, "Test")
+        player1 = Player(1, "Test")
 
-        self.assertEqual("Test", a.name)
+        self.assertEqual("Test", player1.name)
 
 if __name__ == "__main__": 
     unittest.main()
