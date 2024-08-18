@@ -1,7 +1,9 @@
 import unittest
+
+# from app.player_list import *
 import sys
 sys.path.append('./app/')
-from player_list import *
+from app.player_list import *
 
 player1 = Player("01", "Testing1")
 player2 = Player("02", "Joel")
@@ -67,6 +69,22 @@ class PlayerListTest(unittest.TestCase):
 
         with self.assertRaises(IndexError):
             mylist.shift()
+
+    def test_shift_values(self):
+        mylist = PlayerList()
+
+        mylist.unshift(player1)
+        mylist.push(player2)
+
+        self.assertEqual(mylist.shift(), "01")
+
+    def test_shift_unshift(self):
+        mylist = PlayerList()
+
+        mylist.unshift(player1)
+        mylist.pop()
+
+        # mylist.
 
     
             

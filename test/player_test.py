@@ -1,10 +1,10 @@
 import unittest
 import sys
-sys.path.append('./app/')
+# sys.path.append('./app/')
 
-from player import *
+# from player import *
 # import inc_dec
-# from app.player import Player
+from app.player import Player
 
 class TestPlayerClass(unittest.TestCase):
 
