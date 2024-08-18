@@ -22,5 +22,54 @@ class PlayerListTest(unittest.TestCase):
 
         self.assertEqual(len(mylist), 2)
 
+    def test_pop_empty(self):
+        mylist = PlayerList()
+
+        with self.assertRaises(IndexError):
+            mylist.pop()
+
+    def test_pop_values(self):
+        mylist = PlayerList()
+
+        mylist.push(player1)
+        mylist.push(player2)
+
+        self.assertEquals(mylist.pop(), "02")
+
+    def test_push_and_pop(self):
+        mylist = PlayerList()
+
+        mylist.push(player1)
+        mylist.push(player2)
+
+        mylist.pop()
+
+        self.assertEqual(mylist.pop(), "01")
+
+        mylist.push(player3)
+
+    def test_unshift_empty(self):
+        mylist = PlayerList()
+        
+        mylist.unshift(player1)
+
+        self.assertEqual(len(mylist), 1)
+
+    def test_unshift_multiple(self):
+        mylist = PlayerList()
+        mylist.unshift(player1)
+        mylist.unshift(player2)
+
+        self.assertEqual(mylist.pop(), "01")
+
+    def test_shift_empty(self):
+        mylist = PlayerList()
+
+        with self.assertRaises(IndexError):
+            mylist.shift()
+
+    
+            
+
 if __name__ == "__main__": 
     unittest.main()

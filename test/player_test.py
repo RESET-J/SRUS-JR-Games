@@ -9,12 +9,12 @@ from player import *
 class TestPlayerClass(unittest.TestCase):
 
     def test_uid(self):
-        player1 = Player(1, "Test")
+        player1 = Player("01", "Test")
 
-        self.assertEqual(player1.uid, 1)
+        self.assertEqual(player1.uid, "01")
 
     def test_name(self): 
-        player1 = Player(1, "Test")
+        player1 = Player("01", "Test")
 
         self.assertEqual("Test", player1.name)
 

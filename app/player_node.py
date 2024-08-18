@@ -15,7 +15,7 @@ class PlayerNode:
         return self._previous
     
     @previous.setter
-    def previous(self, value: Player):
+    def previous(self, value):
         self._previous = value
 
     @property
