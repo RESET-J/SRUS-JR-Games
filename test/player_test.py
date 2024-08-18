@@ -1,5 +1,8 @@
 import unittest
-from app.player import Player
+import sys
+sys.path.append('./app/')
+
+from player import *
 # import inc_dec
 # from app.player import Player
 
