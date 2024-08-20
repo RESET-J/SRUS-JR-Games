@@ -86,6 +86,31 @@ class PlayerListTest(unittest.TestCase):
 
         # mylist.
 
+    def test_delete_empty(self):
+        mylist = PlayerList()
+
+        with self.assertRaises(IndexError):
+            mylist.delete("01")
+
+    def test_delete_not_found(self):
+        mylist = PlayerList()
+
+        mylist.push(player2)
+
+        with self.assertRaises(KeyError):
+            mylist.delete("01")
+
+    def test_delete(self):
+        mylist = PlayerList()
+
+        mylist.push(player2)
+
+        self.assertEqual(mylist.delete("02"), "02")
+        mylist.unshift(player1)
+        mylist.push(player3)
+
+        self.assertEqual(mylist.delete("01"), "01")
+
     
             
 
