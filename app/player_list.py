@@ -2,7 +2,16 @@ from player import Player
 from player_node import PlayerNode
 
 class PlayerList:
+    '''
+    Represents an linked list of players 
+    '''
     def __init__(self, values=[]) -> None:
+        """
+        Initialises an player list
+
+            Args:
+                values (list): Takes an list of players to push to the list
+        """
         self.head = None
         self.tail = None
         self._count = 0
@@ -14,6 +23,15 @@ class PlayerList:
         return self._count
     
     def delete(self, key) -> str:
+        '''
+        Deletes an value in the list by the given key
+
+            Args:
+                    key (str): An key that identifies the value to be removed
+
+            Returns:
+                    str: returns the key of the deleted item
+        '''
         if self.head == None:
             raise IndexError("Error, the list is empty")
         
@@ -33,7 +51,7 @@ class PlayerList:
                     break
                 current_item = current_item.previous
 
-            if current_item.key == key:
+            if current_item.key == key and value == None:
                 value = current_item
 
             if value != None:
@@ -49,9 +67,14 @@ class PlayerList:
             
         self._count -= 1
         return value.key
-        
 
     def push(self, value: Player):
+        '''
+        Adds an item to the head of the list
+
+            Args:
+                value (Player): The item to be added to the list
+        '''
         if self.head == None and self.tail == None:
             item = PlayerNode(value)
             self.head = item
@@ -66,6 +89,9 @@ class PlayerList:
         self._count += 1
 
     def pop(self) -> str:
+        '''
+        Removes an item from the head of the list
+        '''
         if self.head == None:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
@@ -81,6 +107,12 @@ class PlayerList:
         return value
     
     def unshift(self, value: Player):
+        '''
+        Adds an item to the tail of the list
+
+            Args:
+                value (Player): The item to be added to the list
+        '''
         if self.head == None and self.tail == None:
             item = PlayerNode(value)
             self.head = item
@@ -95,6 +127,7 @@ class PlayerList:
         self._count += 1
 
     def shift(self) -> str:
+        '''Removes an item from the tail of the list'''
         if self.tail == None:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
@@ -107,5 +140,35 @@ class PlayerList:
             self.tail.previous = None
 
         self._count -= 1
+        return value
+    
+    def display(self, forward: bool = True) -> str:
+        """
+        Displays the items in the list in order, forward = true head -> tail, forward = false tail -> head
+
+            Args:
+                forward (bool): Determines the order in which the list in printed
+        """
+        if self.head == None:
+            raise IndexError("Error, the list in empty")
+
+        value = ""
+
+        if forward:
+            current_item = self.head
+            while current_item.previous != None:
+                value += str(current_item.player) + " -> "
+                current_item = current_item.previous
+        else:
+            current_item = self.tail
+            while current_item.succeeding != None:
+                value += str(current_item.player) + " -> "
+                current_item = current_item.succeeding
+            
+
+        value += str(current_item.player)
+
+        print(value)
+
         return value
     

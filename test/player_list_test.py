@@ -110,9 +110,33 @@ class PlayerListTest(unittest.TestCase):
         mylist.push(player3)
 
         self.assertEqual(mylist.delete("01"), "01")
+        mylist.display(forward=False)
 
-    
-            
+    def test_forward_true(self):
+        mylist = PlayerList()
+
+        mylist.push(player1)        
+        mylist.push(player2)
+        mylist.push(player3)
+
+        value = mylist.display(forward=True)
+
+        correct = "03 Rafael -> 02 Joel -> 01 Testing1"
+
+        self.assertEqual(value, correct)
+
+    def test_forward_false(self):
+        mylist = PlayerList()
+
+        mylist.push(player1)
+        mylist.push(player2)
+        mylist.push(player3)
+
+        value = mylist.display(forward=False)
+
+        correct = "01 Testing1 -> 02 Joel -> 03 Rafael"
+
+        self.assertEqual(value, correct)
 
 if __name__ == "__main__": 
     unittest.main()

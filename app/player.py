@@ -1,5 +1,12 @@
 class Player:
+    '''
+    Represents an player with an uid and name.
+    '''
+
     def __init__(self, uid: str, name: str) -> None:
+        '''
+        Initialises an player with an uid and name
+        '''
         self._uid = uid
         self._name = name
         # pass
@@ -7,9 +14,6 @@ class Player:
     @property
     def uid(self):
         return self._uid
-    @uid.setter
-    def uid(self, value):
-        self._uid = value
     
     @property
     def name(self): 
