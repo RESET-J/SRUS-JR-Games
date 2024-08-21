@@ -12,8 +12,8 @@ class PlayerList:
             Args:
                 values (list): Takes an list of players to push to the list
         """
-        self.head = None
-        self.tail = None
+        self._head = None
+        self._tail = None
         self._count = 0
 
         for item in values:
@@ -32,19 +32,19 @@ class PlayerList:
             Returns:
                     str: returns the key of the deleted item
         '''
-        if self.head == None:
+        if self._head == None:
             raise IndexError("Error, the list is empty")
         
         value = None
         if self._count == 1:
-            if self.head.key == key:
-                value = self.head
-                self.head = None
-                self.tail = None
+            if self._head.key == key:
+                value = self._head
+                self._head = None
+                self._tail = None
             else:
                 raise KeyError("Error, the specified key cannot be found")
         else:
-            current_item = self.head
+            current_item = self._head
             while current_item.previous != None:
                 if current_item.key == key:
                     value = current_item
@@ -75,16 +75,16 @@ class PlayerList:
             Args:
                 value (Player): The item to be added to the list
         '''
-        if self.head == None and self.tail == None:
+        if self._head == None and self._tail == None:
             item = PlayerNode(value)
-            self.head = item
-            self.tail = item
+            self._head = item
+            self._tail = item
         else:
             item = PlayerNode(value)
-            item.previous = self.head
-            self.head.succeeding = item
+            item.previous = self._head
+            self._head.succeeding = item
 
-            self.head = item
+            self._head = item
 
         self._count += 1
 
@@ -92,16 +92,16 @@ class PlayerList:
         '''
         Removes an item from the head of the list
         '''
-        if self.head == None:
+        if self._head == None:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
-            value = self.head.player.uid
-            self.head == None
-            self.tail == None
+            value = self._head.player.uid
+            self._head == None
+            self._tail == None
         else:
-            value = self.head.player.uid
-            self.head = self.head.previous
-            self.head.succeeding = None
+            value = self._head.player.uid
+            self._head = self._head.previous
+            self._head.succeeding = None
 
         self._count -= 1
         return value
@@ -113,31 +113,31 @@ class PlayerList:
             Args:
                 value (Player): The item to be added to the list
         '''
-        if self.head == None and self.tail == None:
+        if self._head == None and self._tail == None:
             item = PlayerNode(value)
-            self.head = item
-            self.tail = item
+            self._head = item
+            self._tail = item
         else:
             item = PlayerNode(value)
-            self.tail.previous = item
-            item.succeeding = self.tail
+            self._tail.previous = item
+            item.succeeding = self._tail
 
-            self.tail = item
+            self._tail = item
 
         self._count += 1
 
     def shift(self) -> str:
         '''Removes an item from the tail of the list'''
-        if self.tail == None:
+        if self._tail == None:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
-            value = self.head.player.uid
-            self.head == None
-            self.tail == None
+            value = self._head.player.uid
+            self._head == None
+            self._tail == None
         else:
-            value = self.tail.player.uid
-            self.tail = self.tail.succeeding
-            self.tail.previous = None
+            value = self._tail.player.uid
+            self._tail = self._tail.succeeding
+            self._tail.previous = None
 
         self._count -= 1
         return value
@@ -149,18 +149,18 @@ class PlayerList:
             Args:
                 forward (bool): Determines the order in which the list in printed
         """
-        if self.head == None:
+        if self._head == None:
             raise IndexError("Error, the list in empty")
 
         value = ""
 
         if forward:
-            current_item = self.head
+            current_item = self._head
             while current_item.previous != None:
                 value += str(current_item.player) + " -> "
                 current_item = current_item.previous
         else:
-            current_item = self.tail
+            current_item = self._tail
             while current_item.succeeding != None:
                 value += str(current_item.player) + " -> "
                 current_item = current_item.succeeding

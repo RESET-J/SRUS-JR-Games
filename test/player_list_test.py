@@ -1,6 +1,5 @@
 import unittest
 
-# from app.player_list import *
 import sys
 sys.path.append('./app/')
 from app.player_list import *
