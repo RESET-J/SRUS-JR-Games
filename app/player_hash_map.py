@@ -37,7 +37,13 @@ class PlayerHashMap:
             self.hashmap[index].push(Player(key, value))
             self._count += 1
 
-    def __delitem__()
+    def __delitem__(self, key) -> str:
+        if self._count == 0:
+            raise IndexError("Error, the hash table is empty")
+        index = self.get_index(key)
+        self.hashmap[index].delete(key)
+
+        self._count -= 1
 
 
 if __name__ == "__main__":
@@ -47,4 +53,4 @@ if __name__ == "__main__":
     mylist["Hello"] = "ay"
     player = mylist["Hello"]
 
-    print(player.name + " " +len(mylist))
+    print(len(mylist))
