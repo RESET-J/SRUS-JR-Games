@@ -22,6 +22,35 @@ class PlayerList:
     def __len__(self) -> int:
         return self._count
     
+    def find(self, key) -> Player:
+        """
+        Finds an player in the linked list by the key
+
+            Args:
+            key (str): The uid of the player
+        """
+        value = None
+
+        if self._head == None:
+            raise IndexError("Error, the list is empty")
+        if self._count == 1 and self._head.key == key:
+            return self._head.player
+        
+        current_node = self._head
+        while current_node.previous != None:
+            if current_node.key == key:
+                value = current_node
+                break
+            current_node = current_node.previous
+
+        if value == None and current_node.key == key:
+            value = current_node
+
+        if value == None:
+            raise KeyError("Error, the value could not be found")
+        
+        return value.player
+    
     def delete(self, key) -> str:
         '''
         Deletes an value in the list by the given key
