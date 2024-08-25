@@ -27,7 +27,7 @@ class PlayerList:
         Finds an player in the linked list by the key
 
             Args:
-            key (str): The uid of the player
+                key (str): The uid of the player
         """
         value = None
 
