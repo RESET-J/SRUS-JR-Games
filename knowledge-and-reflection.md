@@ -79,9 +79,9 @@ Source - https://www.sciencedirect.com/topics/computer-science/hashing-algorithm
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
-> 1. the first hash function always will return the same value, leading to zero collision reisistance, and will not change regardless of what key is used,
+> 1. the first hash function always will return the same value, leading to zero collision reisistance, and will not change regardless of what key is used, is not uniform, however is very efficient, and offers zero security
 
-> 2. The second is very simple to impliment, is generally pretty uniform, is very efficient as its simple design can be quick to compute, has medium collission resistance, it is better than the simple hash function, however collision resistance is still quite low, is very sesitive to change as even small input changes can alter the output, security would be rather low as collision chance is still high
+> 2. The second is simple to impliment, is generally pretty uniform, is very efficient as its simple design can be quick to compute, has medium collission resistance, it is better than the simple hash function, however collision resistance is still quite low, is very sesitive to change as even small input changes can alter the output, security would be rather low as collision chance is still high
 
 >3. The third is an bit more complex than the second option, it is generally uniform, it is still rather efficient however not as efficient as the last, Has an good resistance to collisions however not as good as more complex hash functions, is sensitive to small changes as small changes can significantly change the output, is decently secure, and prodeuces an randomlike hash, due to using the random module.
 
@@ -91,7 +91,7 @@ Source - https://www.sciencedirect.com/topics/computer-science/hashing-algorithm
 
 >Resources - https://www.codecademy.com/resources/docs/python/built-in-functions/hash
 
->5. The SHA256 hash is an excellent at uniformity, is efficient, but less efficient, than all of the previous hash functions, has an excellent collission resistance, is very sensitive to small changes, due to its encryption and is secure.
+>5. The SHA256 hash is an excellent at uniformity, is efficient, but less efficient, than all of the previous hash functions, has an excellent collission resistance, is very sensitive to small changes, due to its encryption is secure.
 
 >Resources - https://www.n-able.com/blog/sha-256-encryption
 
@@ -101,7 +101,7 @@ Source - https://www.sciencedirect.com/topics/computer-science/hashing-algorithm
 
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
 
-> Pearson hash function, more complex than the two simplest hash, used as has an decent average accross all attributes, i thought has better collision resistance than the simple hash function and the ASCII hash function, however was still reletively simple compared to the SHA256, and did not need import.
+> Pearson hash function, more complex than the two simplest hash, used as offers an decent average accross all attributes, has better collision resistance than the simple hash function and the ASCII hash function, however was still reletively simple compared to the SHA256, and did not need import.
 
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
@@ -133,11 +133,11 @@ then returns an remainder of hash_ / the size
 
 1. What was the most challenging aspect of this task?
 
-> Learning about / implimenting the hashmaps, and the differences between them, some hashmaps are simlper than others, however some can get quite complex, with hashes as SHA256 using cryptography / encryption to ensure high security, and outputs an hash of 256 bits long
+> Learning about / implimenting the hashmaps, and the differences between them, some hashmaps are simpler than others, however some can get quite complex, with hashes as SHA256 using cryptography / encryption to ensure high security, and outputs an hash of 256 bits long
 
 2. If you didn't have to use a PlayerList, how would you have changed them implementation of the hash map and why?
 
-> I would have either used an list / array, this can provide an simlier soution to the linked list and is built directly into
+> I would have either used an list / array, this can provide an similar solution however is built directly into python, with no need to use other classes or libraries, or an dictionary, as this can lead to better efficiency, and is built into python with optimisation, that the link list i created would not achieve.
 
 ## Reference
 

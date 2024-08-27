@@ -87,22 +87,3 @@ class PlayerHashMap:
         print(value)
 
         return value
-
-
-if __name__ == "__main__":
-    mylist = PlayerHashMap()
-
-    # mylist["Hello"] = "py"
-    # mylist["dkasjf"] = "a"
-    # mylist["badfsf"] = "b"
-    # mylist["Hello"] = "ay"
-    # mylist["Goodbye"] = "1"
-
-    mylist["01"] = "Joel"
-    mylist["02"] = "Rafael"
-
-    print()
-
-    string1 = mylist.display()
-
-    print(string1)
