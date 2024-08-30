@@ -106,9 +106,36 @@ Source - https://www.sciencedirect.com/topics/computer-science/hashing-algorithm
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
-> imports the random library, then sets an fixed seed for the generator, creates an pearson_table with the values from 0 - 255, shuffles the list, takes an key / size, initialises hash_ as 0, iterates over each character in the key, for each character(char) it sets the hash_ variable to the value of the pearson_table with the index of _hash ^ the current char as unicode
+```python
+import random
 
-then returns an remainder of hash_ / the size
+random.seed(42)
+```
+> this line imports the random module, and uses the random.seed function to set an seed for the random to use, this ensures that the random values generated will be the same every time with the same seed.
+```python
+pearson_table = list(range(256))
+random.shuffle(pearson_table)
+```
+>this line initialises an list with the values 0 - 255, and then shuffles them randomly with the seed that was set
+
+```python
+def pearson_hash(key: str, size: int) -> int:
+```
+
+> This creates an new function called pearson_hash that will return an int of the input key
+
+```python
+hash_ = 0
+for char in key:
+        hash_ = pearson_table[hash_ ^ ord(char)]
+```
+> this sets an variable to the value of 0, then for each character ( char ) in the key that was input, sets the variable to the value of the pearson_hash with the index of the current variable ^ or Xor the ord of char
+
+```python
+return hash_ % size
+```
+>returns the remainder of the hash variable devided by the size parameter
+
 
 6. Write pseudocode of how you would store Players in PlayerLists in a hash map.
 
@@ -116,7 +143,7 @@ then returns an remainder of hash_ / the size
 # initialise the hashmap
 # 
 # Create an function for get that takes an key and an value
-# Run the hash finction on the key
+# Run the hash function on the key
 
 # item = hashmap[index]
 # try:
