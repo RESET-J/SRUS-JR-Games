@@ -35,7 +35,7 @@ class PlayerListTest(unittest.TestCase):
         mylist.push(player1)
         mylist.push(player2)
 
-        self.assertEquals(mylist.pop(), "02")
+        self.assertEqual(mylist.pop(), "02")
 
     def test_push_and_pop(self):
         mylist = PlayerList()

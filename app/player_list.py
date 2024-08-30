@@ -2,9 +2,9 @@ from player import Player
 from player_node import PlayerNode
 
 class PlayerList:
-    '''
-    Represents an linked list of players 
-    '''
+    """
+    Represents an linked list of players
+    """
     def __init__(self, values=[]) -> None:
         """
         Initialises an player list
@@ -125,8 +125,8 @@ class PlayerList:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
             value = self._head.player.uid
-            self._head == None
-            self._tail == None
+            self._head = None
+            self._tail= None
         else:
             value = self._head.player.uid
             self._head = self._head.previous
@@ -161,8 +161,8 @@ class PlayerList:
             raise IndexError("Error, the list is empty")
         elif self._count == 1:
             value = self._head.player.uid
-            self._head == None
-            self._tail == None
+            self._head = None
+            self._tail = None
         else:
             value = self._tail.player.uid
             self._tail = self._tail.succeeding

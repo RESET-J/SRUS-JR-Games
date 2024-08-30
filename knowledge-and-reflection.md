@@ -87,7 +87,7 @@ Source - https://www.sciencedirect.com/topics/computer-science/hashing-algorithm
 
 >Resources - https://en.wikipedia.org/wiki/Pearson_hashing
 
->4. is decent however is depended on the object, is optimised for various python objects / classes, can offer reasonable collision resistance, sensitive to small changes, can offer medium security
+>4. The built in hash function has good uniformaty, sperad accross an even range, it will always return the same output for the same key / value, is generally considered efficient, is generally collission resistant, however is not the best for security as it is not built with features such as cryptography in mind.
 
 >Resources - https://www.codecademy.com/resources/docs/python/built-in-functions/hash
 
@@ -133,7 +133,7 @@ then returns an remainder of hash_ / the size
 
 1. What was the most challenging aspect of this task?
 
-> Learning about / implimenting the hashmaps, and the differences between them, some hashmaps are simpler than others, however some can get quite complex, with hashes as SHA256 using cryptography / encryption to ensure high security, and outputs an hash of 256 bits long
+> Learning about / implementing the hashmaps, and the differences between them, some hashmaps are simpler than others, however some can get quite complex, with hashes as SHA256 using cryptography / encryption to ensure high security, and outputs an hash of 256 bits long
 
 2. If you didn't have to use a PlayerList, how would you have changed them implementation of the hash map and why?
 

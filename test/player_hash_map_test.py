@@ -31,7 +31,7 @@ class PlayerHashMapTest(unittest.TestCase):
 
         del myhashmap["01"]
 
-        self.assertEquals(len(myhashmap), 2)
+        self.assertEqual(len(myhashmap), 2)
 
     def test_modify_player(self):
         myhashmap = PlayerHashMap()
