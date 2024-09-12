@@ -71,3 +71,6 @@ sortArr(arr, n, min_no, max_no)
 ```
 
 > GeeksforGeeks. (2018). Sorting without comparison of elements. [online] Available at: https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/.
+
+# Choose an algorithm of your liking based on the answers you provided to the Knowledge Questions and describe why you chose it
+> I chose the quick sort algorithm, as it is better for large amounts of items, and is considered one of the best algorithms for efficiency.

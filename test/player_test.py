@@ -1,4 +1,5 @@
 import unittest
+import random
 
 from app.player import Player
 
@@ -130,7 +131,26 @@ class TestPlayerClass(unittest.TestCase):
 
         sorted_players = sorted(players)
 
-        Player.quick_sort(players, 0, len(players) - 1)
+        sorted_players.reverse()
+
+        players = Player.quick_sort(players)
+
+        self.assertEqual(players == sorted_players, True)
+
+    def test_quick_sort_large_data(self):
+        random_values = random.sample(range(1000), 1000)
+        players = list()
+
+        for item in range(1000):
+            player = Player(str(random_values[item]), random_values[item])
+            player.score = random_values[item]
+            players.append(player)
+
+        sorted_players = sorted(players)
+
+        players = Player.quick_sort(players)
+
+        sorted_players.reverse()
 
         self.assertEqual(players, sorted_players)
         

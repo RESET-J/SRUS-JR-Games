@@ -47,29 +47,17 @@ class Player:
         return self._score >= other
     
     @staticmethod
-    def partition(values: list, low: int, high: int) -> int:
-        pivot = values[high]
-
-        i = low - 1
-
-        for j in range(low, high):
-            if values[j] <= pivot:
-                i = i + 1
-
-                (values[i], values[j]) = (values[j], values[i])
-
-        (values[i + 1], values[high]) = (values[high], values[i + 1])
-
-        return i + 1
-    
-    @staticmethod
-    def quick_sort(values: list, low: int, high: int) -> None:
-        if low < high:
-            pi = Player.partition(values, low, high)
-
-            Player.quick_sort(values, low, pi - 1)
-
-            Player.quick_sort(values, pi + 1, high)
+    def quick_sort(values: list) -> list:
+        """
+        Sorts an list of objects with an quick sort algorithm
+        """
+        if len(values) <= 1:
+            return values
+        else:
+            pivot = values[0]
+            left = [x for x in values[1:] if x > pivot]
+            right = [x for x in values[1:] if x <= pivot]
+            return Player.quick_sort(left) + [pivot] + Player.quick_sort(right)
 
     @staticmethod
     def hash(key: str) -> int:
