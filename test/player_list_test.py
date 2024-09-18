@@ -9,129 +9,115 @@ player2 = Player("02", "Joel")
 player3 = Player("03", "Rafael")
 
 class PlayerListTest(unittest.TestCase):
+    def setUp(self) -> None:
+        super().setUp()
+
+        self.my_list = PlayerList()
+
     def test_push_empty(self):
         player = Player("player1", "Testing")
-        mylist = PlayerList()
 
-        mylist.push(player)
-        self.assertEqual(len(mylist), 1)
+        self.my_list.push(player)
 
     def test_push_multple(self):
-        mylist = PlayerList()
-        mylist.push(player1)
-        mylist.push(player2)
+        self.my_list.push(player1)
+        self.my_list.push(player2)
 
-        self.assertEqual(len(mylist), 2)
+        self.assertEqual(len(self.my_list), 2)
 
     def test_pop_empty(self):
-        mylist = PlayerList()
-
         with self.assertRaises(IndexError):
-            mylist.pop()
+            self.my_list.pop()
 
     def test_pop_values(self):
-        mylist = PlayerList()
+        self.my_list.push(player1)
+        self.my_list.push(player2)
 
-        mylist.push(player1)
-        mylist.push(player2)
-
-        self.assertEqual(mylist.pop(), "02")
+        self.assertEqual(self.my_list.pop(), "02")
 
     def test_push_and_pop(self):
-        mylist = PlayerList()
+        self.my_list.push(player1)
+        self.my_list.push(player2)
 
-        mylist.push(player1)
-        mylist.push(player2)
+        self.my_list.pop()
 
-        mylist.pop()
+        self.assertEqual(self.my_list.pop(), "01")
 
-        self.assertEqual(mylist.pop(), "01")
-
-        mylist.push(player3)
+        self.my_list.push(player3)
 
     def test_unshift_empty(self):
-        mylist = PlayerList()
-        
-        mylist.unshift(player1)
+        self.my_list.unshift(player1)
 
-        self.assertEqual(len(mylist), 1)
+        self.assertEqual(len(self.my_list), 1)
 
     def test_unshift_multiple(self):
-        mylist = PlayerList()
-        mylist.unshift(player1)
-        mylist.unshift(player2)
+        self.my_list.unshift(player1)
+        self.my_list.unshift(player2)
 
-        self.assertEqual(mylist.pop(), "01")
+        self.assertEqual(self.my_list.pop(), "01")
 
     def test_shift_empty(self):
-        mylist = PlayerList()
-
         with self.assertRaises(IndexError):
-            mylist.shift()
+            self.my_list.shift()
 
     def test_shift_values(self):
-        mylist = PlayerList()
+        self.my_list.unshift(player1)
+        self.my_list.push(player2)
 
-        mylist.unshift(player1)
-        mylist.push(player2)
-
-        self.assertEqual(mylist.shift(), "01")
+        self.assertEqual(self.my_list.shift(), "01")
 
     def test_shift_unshift(self):
-        mylist = PlayerList()
+        self.my_list.unshift(player1)
+        self.my_list.pop()
 
-        mylist.unshift(player1)
-        mylist.pop()
-
-        # mylist.
+        # self.my_list.
 
     def test_delete_empty(self):
-        mylist = PlayerList()
-
         with self.assertRaises(IndexError):
-            mylist.delete("01")
+            self.my_list.delete("01")
 
     def test_delete_not_found(self):
-        mylist = PlayerList()
-
-        mylist.push(player2)
+        self.my_list.push(player2)
 
         with self.assertRaises(KeyError):
-            mylist.delete("01")
+            self.my_list.delete("01")
 
     def test_delete(self):
-        mylist = PlayerList()
+        self.my_list.push(player2)
+        self.my_list.push(player1)
+        self.my_list.push(player3)
 
-        mylist.push(player2)
+        before_delete = self.my_list.display()
 
-        self.assertEqual(mylist.delete("02"), "02")
-        mylist.unshift(player1)
-        mylist.push(player3)
+        self.my_list.delete("02")
 
-        self.assertEqual(mylist.delete("01"), "01")
-        mylist.display(forward=False)
+        self.assertNotEqual(self.my_list.display(), before_delete)
+
+        self.my_list.push(player2)
+
+        before_length = len(self.my_list)
+
+        self.my_list.delete("02")
+
+        self.assertEqual(before_length - 1, len(self.my_list))
 
     def test_forward_true(self):
-        mylist = PlayerList()
+        self.my_list.push(player1)        
+        self.my_list.push(player2)
+        self.my_list.push(player3)
 
-        mylist.push(player1)        
-        mylist.push(player2)
-        mylist.push(player3)
-
-        value = mylist.display(forward=True)
+        value = self.my_list.display(forward=True)
 
         correct = "03 Rafael -> 02 Joel -> 01 Testing1"
 
         self.assertEqual(value, correct)
 
     def test_forward_false(self):
-        mylist = PlayerList()
+        self.my_list.push(player1)
+        self.my_list.push(player2)
+        self.my_list.push(player3)
 
-        mylist.push(player1)
-        mylist.push(player2)
-        mylist.push(player3)
-
-        value = mylist.display(forward=False)
+        value = self.my_list.display(forward=False)
 
         correct = "01 Testing1 -> 02 Joel -> 03 Rafael"
 

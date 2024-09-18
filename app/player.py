@@ -9,17 +9,16 @@ random.shuffle(pearson_table)
 
 class Player:
     '''
-    Represents an player with an uid and name.
+    Represents a player with an uid and name.
     '''
 
     def __init__(self, uid: str, name: str) -> None:
         '''
-        Initialises an player with an uid and name
+        Initialises a player with an uid and name
         '''
         self._uid = uid
         self._name = name
         self._score = 0
-        # pass
 
     def __lt__(self, other: Player | Any) -> bool:
         if isinstance(other, Player):

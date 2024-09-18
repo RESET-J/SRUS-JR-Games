@@ -5,10 +5,10 @@ class PlayerNode:
         self._player = player
         self.key = self._player.uid
         self._previous = None
-        self._succeeding = None
+        self._next = None
 
     def __str__(self) -> str:
-        return f"previous {self._previous} this {self.key} succeeding {self._succeeding}"
+        return f"previous {self._previous} this {self.key} succeeding {self._next}"
 
     @property
     def previous(self):
@@ -19,12 +19,12 @@ class PlayerNode:
         self._previous = value
 
     @property
-    def succeeding(self):
-        return self._succeeding
+    def next(self):
+        return self._next
     
-    @succeeding.setter
-    def succeeding(self, value):
-        self._succeeding = value
+    @next.setter
+    def next(self, value):
+        self._next = value
 
     @property
     def player(self):

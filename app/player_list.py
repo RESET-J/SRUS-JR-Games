@@ -5,13 +5,15 @@ class PlayerList:
     """
     Represents an linked list of players
     """
-    def __init__(self, values=[]) -> None:
+    def __init__(self, values=None) -> None:
         """
-        Initialises an player list
+        Initialises a player list
 
             Args:
                 values (list): Takes an list of players to push to the list
         """
+        if values == None:
+            values = []
         self._head = None
         self._tail = None
         self._count = 0
@@ -22,9 +24,9 @@ class PlayerList:
     def __len__(self) -> int:
         return self._count
     
-    def find(self, key) -> Player:
+    def find(self, key: str) -> Player:
         """
-        Finds an player in the linked list by the key
+        Finds a player in the linked list by the key
 
             Args:
                 key (str): The uid of the player
@@ -51,7 +53,7 @@ class PlayerList:
         
         return value.player
     
-    def delete(self, key) -> str:
+    def delete(self, key: str) -> None:
         '''
         Deletes an value in the list by the given key
 
@@ -61,41 +63,27 @@ class PlayerList:
             Returns:
                     str: returns the key of the deleted item
         '''
-        if self._head == None:
+        if self._head == None and self._tail == None:
             raise IndexError("Error, the list is empty")
+        if key == self._head.key:
+            self.pop()
+            return
         
-        value = None
-        if self._count == 1:
-            if self._head.key == key:
-                value = self._head
-                self._head = None
-                self._tail = None
-            else:
-                raise KeyError("Error, the specified key cannot be found")
-        else:
-            current_item = self._head
-            while current_item.previous != None:
-                if current_item.key == key:
-                    value = current_item
-                    break
-                current_item = current_item.previous
+        current_node = self._head
+        while current_node is not None:
+            if current_node.key == key:
+                break
+            current_node = current_node.previous
 
-            if current_item.key == key and value == None:
-                value = current_item
+        if current_node == None:
+            raise KeyError("The key was not found!!!")
+        
+        if current_node.previous != None:
+            current_node.previous.next = current_node.next
+        if current_node.next != None:
+            current_node.next.previous = current_node.previous
 
-            if value != None:
-                if value.succeeding != None and value.previous != None:
-                    value.previous.succeeding = value.succeeding
-                    value.succeeding.previous = value.previous
-                elif value.succeeding != None:
-                    value.succeeding.previous = None
-                elif value.previous != None:
-                    value.previous.succeeding = None
-            else:
-                raise KeyError("Error, the specified key cannot be found")
-            
         self._count -= 1
-        return value.key
 
     def push(self, value: Player):
         '''
@@ -111,7 +99,7 @@ class PlayerList:
         else:
             item = PlayerNode(value)
             item.previous = self._head
-            self._head.succeeding = item
+            self._head.next = item
 
             self._head = item
 
@@ -130,7 +118,7 @@ class PlayerList:
         else:
             value = self._head.player.uid
             self._head = self._head.previous
-            self._head.succeeding = None
+            self._head.next = None
 
         self._count -= 1
         return value
@@ -149,7 +137,7 @@ class PlayerList:
         else:
             item = PlayerNode(value)
             self._tail.previous = item
-            item.succeeding = self._tail
+            item.next = self._tail
 
             self._tail = item
 
@@ -165,7 +153,7 @@ class PlayerList:
             self._tail = None
         else:
             value = self._tail.player.uid
-            self._tail = self._tail.succeeding
+            self._tail = self._tail.next
             self._tail.previous = None
 
         self._count -= 1
@@ -185,14 +173,14 @@ class PlayerList:
 
         if forward:
             current_item = self._head
-            while current_item.previous != None:
+            while current_item.previous is not None:
                 value += str(current_item.player) + " -> "
                 current_item = current_item.previous
         else:
             current_item = self._tail
-            while current_item.succeeding != None:
+            while current_item.next is not None:
                 value += str(current_item.player) + " -> "
-                current_item = current_item.succeeding
+                current_item = current_item.next
             
 
         value += str(current_item.player)
@@ -200,4 +188,5 @@ class PlayerList:
         print(value)
 
         return value
+        
     
