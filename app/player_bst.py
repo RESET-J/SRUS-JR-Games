@@ -1,11 +1,15 @@
+from __future__ import annotations
 from player import Player
 from player_bnode import PlayerBNode
 
 class PlayerBST:
+    """Represents an binary search tree of players"""
     def __init__(self) -> None:
+        """Initialises an empty player binary search tree"""
         self._root = None
 
     def insert(self, key: Player, current_node=None) -> None:
+        """Inserts an player into the binary search tree based on the players name"""
         if current_node is None:
             current_node = self._root
 
@@ -28,12 +32,16 @@ class PlayerBST:
                 self.insert(key=key, current_node=current_node.right)
 
     def search(self, name: str) -> Player:
+        """Searches through the player binary search tree, and returns an player 
+        with the specified name"""
         return self._search(name=name, current_node=self._root)
 
     # the assignment says to return none if the current node is equal to None however
     # i felt that returning the player and an exception if the key was not found made more sense to me
     # i am happy to change if preffered / required
     def _search(self, name: str, current_node: PlayerBNode = None) -> Player:
+        """Private function that searches through the binary search tree and returns an player 
+        with the specified name"""
         if current_node is None:
             raise KeyError("Error, the key is not found")
         
@@ -57,29 +65,35 @@ class PlayerBST:
     def show(self) -> list:
         """Shows the items in the player bst as an list"""
         return self._show(current_node=self._root)
+    
+    def balance(self) -> PlayerBST:
+        """Returns an balanced version of the current binary search tree"""
+        values = self.show()
 
+        output_bst = PlayerBST()
 
+        index = len(values) // 2
+
+        root = values[index]
+
+        output_bst.insert(root)
+
+        self._balance(values=values[:index], balanced_bst=output_bst)
+
+        self._balance(values=values[index+1:], balanced_bst=output_bst)
+
+        return output_bst
+    
+    def _balance(self, values: list = None, balanced_bst: PlayerBST = None) -> None:
+        """Private function that inserts the middle value of the specified list of players"""
+        if len(values) < 1:
+            return 
         
-        
+        value = values.pop(len(values) // 2)
 
+        balanced_bst.insert(value)
 
-if __name__ == "__main__":
-    bst = PlayerBST()
+        print("Added " + value.name)
 
-    bst.insert(Player("01", "Player1"))
-    bst.insert(Player("02", "Player3"))
-    bst.insert(Player("00", "Player2"))
-    bst.insert(Player("03", "Player0"))
-    bst.insert(Player("04", "player3"))
+        return self._balance(values=values, balanced_bst=balanced_bst)
 
-    print(bst._root.right.player.name)
-    print(bst._root.left)
-    print(bst._root.right.left.player)
-
-    # print(bst.search("Player"))
-
-    new_list = bst.show()
-
-    for item in new_list: 
-        print(item.name)
-        

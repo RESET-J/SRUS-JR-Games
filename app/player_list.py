@@ -33,16 +33,21 @@ class PlayerList:
         """
         value = None
 
-        if self._head == None and self._tail == None:
+        if self._head == None:
             raise IndexError("Error, the list is empty")
+        if self._count == 1 and self._head.key == key:
+            return self._head.player
         
         current_node = self._head
-        while current_node is not None:
+        while current_node.previous != None:
             if current_node.key == key:
                 value = current_node
                 break
             current_node = current_node.previous
-            
+
+        if value == None and current_node.key == key:
+            value = current_node
+
         if value == None:
             raise KeyError("Error, the value could not be found")
         
