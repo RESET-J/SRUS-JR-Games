@@ -17,3 +17,5 @@ Geeksforgeeks (2015). Binary Search Tree - GeeksforGeeks. [online] GeeksforGeeks
 
 www.programiz.com. (n.d.). Balanced Binary Tree. [online] Available at: https://www.programiz.com/dsa/balanced-binary-tree.
 
+# With the newly balanced BST, how many steps does it take at most to find an existing item in the search tree?
+> An balanced binary search tree has an time complexity of O(log2n) although still dependant on the values in the tree, is more consistant than an standard non balanced tree which can in the worst case have an time complexity of o(n).
