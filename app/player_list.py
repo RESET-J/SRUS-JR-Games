@@ -19,7 +19,7 @@ class PlayerList:
         self._count = 0
 
         for item in values:
-            self.push(item)
+            self.add_to_head(item)
 
     def __len__(self) -> int:
         return self._count
@@ -36,9 +36,6 @@ class PlayerList:
         '''
         if self._head == None and self._tail == None:
             raise IndexError("Error, the list is empty")
-        if key == self._head.key:
-            self.pop()
-            return
         
         current_node = self._head
         while current_node is not None:
@@ -49,6 +46,11 @@ class PlayerList:
         if current_node == None:
             raise KeyError("The key was not found!!!")
         
+        if current_node is self._head:
+            self._head = current_node.previous
+        if current_node is self._tail:
+            self._tail = current_node.next
+        
         if current_node.previous != None:
             current_node.previous.next = current_node.next
         if current_node.next != None:
@@ -56,7 +58,7 @@ class PlayerList:
 
         self._count -= 1
 
-    def push(self, value: Player):
+    def add_to_head(self, value: Player):
         '''
         Adds an item to the head of the list
 
@@ -76,7 +78,7 @@ class PlayerList:
 
         self._count += 1
 
-    def pop(self) -> str:
+    def shift(self) -> str:
         '''
         Removes an item from the head of the list
         '''
@@ -94,7 +96,7 @@ class PlayerList:
         self._count -= 1
         return value
     
-    def unshift(self, value: Player):
+    def add_to_tail(self, value: Player):
         '''
         Adds an item to the tail of the list
 
@@ -114,7 +116,7 @@ class PlayerList:
 
         self._count += 1
 
-    def shift(self) -> str:
+    def pop(self) -> str:
         '''Removes an item from the tail of the list'''
         if self._tail == None:
             raise IndexError("Error, the list is empty")
