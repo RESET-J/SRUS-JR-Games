@@ -22,8 +22,8 @@ class TestPlayerClass(unittest.TestCase):
         player1.score = 1
         player2.score = 2
 
-        self.assertEqual(player1 < player2, True)
-        self.assertEqual(player2 < player1, False)
+        self.assertTrue(player1 < player2)
+        self.assertFalse(player2 < player1)
 
     def test_le_player(self):
         player1 = Player("01", "Joel")
@@ -32,7 +32,7 @@ class TestPlayerClass(unittest.TestCase):
         player1.score = 1
         player2.score = 2
 
-        self.assertEqual(player1 <= player2, True)
+        self.assertTrue(player1 <= player2)
 
     def test_eq_player(self):
         player1 = Player("01", "Joel")
@@ -41,11 +41,11 @@ class TestPlayerClass(unittest.TestCase):
         player1.score = 2
         player2.score = 2
 
-        self.assertEqual(player1 == player2, True)
+        self.assertTrue(player1 == player2)
 
-        player1 = 1
+        player1.score = 1
 
-        self.assertEqual(player1 == player2, False)
+        self.assertFalse(player1 == player2)
 
     def test_gt_player(self):
         player1 = Player("01", "Joel")
@@ -54,11 +54,11 @@ class TestPlayerClass(unittest.TestCase):
         player1.score = 1
         player2.score = 2
 
-        self.assertEqual(player2 > player1, True)
+        self.assertTrue(player2 > player1)
 
-        player1 = 3
+        player1.score = 3
 
-        self.assertEqual(player2 > player1, False)
+        self.assertFalse(player2 > player1)
         
     def test_ge_player(self):
         player1 = Player("01", "Joel")
@@ -67,57 +67,57 @@ class TestPlayerClass(unittest.TestCase):
         player1.score = 1
         player2.score = 2
 
-        self.assertEqual(player1 >= player2, False)
-        self.assertEqual(player2 >= player1, True)
+        self.assertFalse(player1 >= player2)
+        self.assertTrue(player2 >= player1)
 
     def test_lt_value(self):
         player1 = Player("01", "Raf")
 
         player1.score = 1
 
-        self.assertEqual(player1 < 2, True)
+        self.assertTrue(player1 < 2)
 
         with self.assertRaises(TypeError):
-            self.assertEqual(player1 < "Hello", False)
+            self.assertFalse(player1 < "Hello")
 
     def test_le_value(self):
         player1 = Player("01", "Raf")
 
         player1.score = 1
 
-        self.assertEqual(player1 <= 1, True)
+        self.assertTrue(player1 <= 1)
 
         with self.assertRaises(TypeError):
-            self.assertEqual(player1 <= "Hello", False)
+            self.assertFalse(player1 <= "Hello")
 
     def test_eq_value(self):
         player1 = Player("01", "Raf")
 
         player1.score = 1
 
-        self.assertEqual(player1 == 1, True)
+        self.assertTrue(player1 == 1)
 
-        self.assertEqual(player1 == 2, False)
+        self.assertFalse(player1 == 2)
 
     def test_gt_value(self):
         player1 = Player("01", "Raf")
 
         player1.score = 1
 
-        self.assertEqual(player1 > 2, False)
+        self.assertFalse(player1 > 2)
 
         with self.assertRaises(TypeError):
-            self.assertEqual(player1 > "Hello", False)
+            self.assertFalse(player1 > "Hello")
 
     def test_ge_value(self):
         player1 = Player("01", "Raf")
 
         player1.score = 1
 
-        self.assertEqual(player1 >= 0, True)
+        self.assertTrue(player1 >= 0)
 
         with self.assertRaises(TypeError):
-            self.assertEqual(player1 >= "Hello", False)
+            self.assertFalse(player1 >= "Hello")
 
     def test_quick_sort(self):
         player1 = Player("01", "Joel")
@@ -135,7 +135,7 @@ class TestPlayerClass(unittest.TestCase):
 
         players = Player.quick_sort(players)
 
-        self.assertEqual(players == sorted_players, True)
+        self.assertTrue(players == sorted_players)
 
     def test_quick_sort_large_data(self):
         random_values = random.sample(range(1000), 1000)
